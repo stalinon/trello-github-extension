@@ -1,12 +1,15 @@
 import {
-  location,
   repository_name,
   repository_trello,
   isLinked,
   isLogIn,
 } from "../lib/const";
-import { getCardStatus } from "../lib/mapper";
-import { appendElement, replaceItem } from "../lib/htmlHelper";
+import {
+  appendElement,
+  appendNode,
+  replaceItem,
+  generateHtmlSelector,
+} from "../lib/htmlHelper";
 import { linkTrelloBoard, linkTrelloAccount } from "../lib/linkers";
 import { Trello } from "../lib/trelloApi";
 
@@ -26,16 +29,12 @@ export class Router {
     if (!isLinked) {
       appendElement(BorderGridCell(link), list);
     } else {
-      Trello.getBoard(repository_trello.board_id)
-        .then((response) => {
-          return response.json();
-        })
-        .then((board) => {
-          appendElement(
-            BorderGridCellConnected(board.shortUrl, board.name),
-            list
-          );
-        });
+      Trello.getBoard(repository_trello.board_id).then((board) => {
+        appendElement(
+          BorderGridCellConnected(board.shortUrl, link, board.name),
+          list
+        );
+      });
     }
   }
 
@@ -47,28 +46,33 @@ export class Router {
       )[0]?.innerHTML;
       let pattern = pull_request_name?.match(/\w+-(\d+)/)!;
       Trello.getCard(repository_trello.board_id, pattern[0]).then((card) => {
-        let cardStatus = getCardStatus(card.idList);
-        appendElement(
-          DiscussionSidebarItem(card.url, card.name, cardStatus),
-          list,
-          false
-        );
+        Trello.getLists(repository_trello.board_id).then((lists) => {
+          let cardStatus = lists.filter(
+            (x: { id: any }) => x.id === card.idList
+          )[0].name;
 
-        document
-          .getElementById("open_trello_btn")
-          ?.addEventListener("click", () =>
-            Trello.moveCard(card.id, repository_trello.open_list_id)
+          appendElement(
+            DiscussionSidebarItem(card.url, card.name, cardStatus),
+            list,
+            false
           );
-        document
-          .getElementById("in_progress_trello_btn")
-          ?.addEventListener("click", () =>
-            Trello.moveCard(card.id, repository_trello.in_progress_list_id)
+
+          appendNode(
+            generateHtmlSelector(lists, cardStatus),
+            document.getElementById("trello_list_selector_container")!
           );
-        document
-          .getElementById("closed_trello_btn")
-          ?.addEventListener("click", () =>
-            Trello.moveCard(card.id, repository_trello.closed_list_id)
-          );
+
+          document
+            .getElementById("trello_list_selector")
+            ?.addEventListener("change", (e) => {
+              let select = e.target as HTMLSelectElement;
+              console.log(select.options[select.selectedIndex].value);
+              Trello.moveCard(
+                card.id,
+                select.options[select.selectedIndex].value
+              );
+            });
+        });
       });
     }
   }

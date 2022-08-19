@@ -11,7 +11,6 @@ async function All() {
       break;
     case `/${repository_name}/trello`:
     case `/${repository_name}/trello/`:
-      Router.onRepositoryPage();
       Router.setTrelloItemCell();
       break;
     default:

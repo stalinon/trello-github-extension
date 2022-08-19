@@ -7,7 +7,10 @@ export default function DiscussionSidebarItem(
 ) {
   return (
     <div id="partial-users-participants" className="discussion-sidebar-item">
-      <div className="participation">
+      <div
+        className="participation d-flex flex-column"
+        id="trello_list_selector_container"
+      >
         <div className="discussion-sidebar-heading text-bold">Trello</div>
         <div className="participation-avatars d-flex flex-wrap">
           <a
@@ -25,50 +28,8 @@ export default function DiscussionSidebarItem(
               height={20}
             />
             <p>{name}</p>
-            <span
-              title="Label: Link"
-              data-view-component="true"
-              className="Label flex-shrink-0 ml-2 d-flex"
-              style={{ alignItems: "center", height: "20px" }}
-              id="status_badge_ided"
-            >
-              {status}
-            </span>
           </a>
         </div>
-        <button
-          id="open_trello_btn"
-          type="button"
-          className="btn m-2"
-          data-disable-with=""
-          style={{
-            fontSize: "10px",
-          }}
-        >
-          Open
-        </button>
-        <button
-          id="in_progress_trello_btn"
-          type="button"
-          className="btn m-2"
-          data-disable-with=""
-          style={{
-            fontSize: "10px",
-          }}
-        >
-          In progress
-        </button>
-        <button
-          id="closed_trello_btn"
-          type="button"
-          className="btn m-2"
-          data-disable-with=""
-          style={{
-            fontSize: "10px",
-          }}
-        >
-          Closed
-        </button>
       </div>
     </div>
   );

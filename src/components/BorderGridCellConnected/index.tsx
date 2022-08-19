@@ -1,6 +1,10 @@
 import trello from "../../trello.png";
 
-export default function BorderGridCellConnected(link: string, name: string) {
+export default function BorderGridCellConnected(
+  link: string,
+  settings: string,
+  name: string
+) {
   return (
     <div className="BorderGrid-cell">
       <h2
@@ -9,7 +13,7 @@ export default function BorderGridCellConnected(link: string, name: string) {
         data-turbo-frame="repo-content-turbo-frame"
       >
         <a
-          href={link}
+          href={settings}
           data-view-component="true"
           className="Link--primary no-underline"
         >

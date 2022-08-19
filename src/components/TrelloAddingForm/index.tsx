@@ -30,27 +30,6 @@ export default function TrelloAddingForm(token: boolean = false) {
                 name="board_id"
                 id="board_id"
               />
-              <input
-                placeholder="Open List Id"
-                className="form-control flex-auto m-2"
-                type="text"
-                name="open_list_id"
-                id="open_list_id"
-              />
-              <input
-                placeholder="In Progress List Id"
-                className="form-control flex-auto m-2"
-                type="text"
-                name="in_progress_list_id"
-                id="in_progress_list_id"
-              />
-              <input
-                placeholder="Closed List Id"
-                className="form-control flex-auto m-2"
-                type="text"
-                name="closed_list_id"
-                id="closed_list_id"
-              />
             </div>
             <hr></hr>
             <button
