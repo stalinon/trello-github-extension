@@ -23,20 +23,27 @@ let trello = {
 let isLinked = false;
 chrome.storage.sync.get(key, (obj) => {
   repository_trello = obj[key];
-  isLinked = !(
-    obj &&
-    Object.keys(obj).length === 0 &&
-    Object.getPrototypeOf(obj) === Object.prototype
-  );
+  console.log(obj);
+  isLinked =
+    !(
+      obj &&
+      Object.keys(obj).length === 0 &&
+      Object.getPrototypeOf(obj) === Object.prototype
+    ) &&
+    repository_trello.board_id != "" &&
+    repository_trello.open_list_id != null &&
+    repository_trello.in_progress_list_id != null &&
+    repository_trello.closed_list_id != null;
 });
 
 let isLogIn = false;
 chrome.storage.sync.get("trello", (result) => {
   trello = result.trello;
+  console.log(result);
   isLogIn = result.trello.api_key != null && result.trello.api_token != null;
 });
 
-setTimeout(All, 500);
+setTimeout(All, 50);
 
 async function All() {
   if (location.includes("/pull/")) {
