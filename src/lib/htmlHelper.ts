@@ -1,14 +1,5 @@
 import ReactDOMServer from "react-dom/server";
 
-var oldHref = document.location.pathname;
-
-var intervalId = window.setInterval(function () {
-  if (oldHref != document.location.pathname) {
-    oldHref = document.location.pathname;
-    document.location.reload();
-  }
-}, 1);
-
 export function appendElement(
   element: JSX.Element,
   toElement: Element,

@@ -1,6 +1,10 @@
 import trello from "../../trello.png";
 
-export default function DiscussionSidebarItem(link: string, name: string) {
+export default function DiscussionSidebarItem(
+  link: string,
+  name: string,
+  status: string
+) {
   return (
     <div id="partial-users-participants" className="discussion-sidebar-item">
       <div className="participation">
@@ -21,8 +25,50 @@ export default function DiscussionSidebarItem(link: string, name: string) {
               height={20}
             />
             <p>{name}</p>
-          </a>{" "}
+            <span
+              title="Label: Link"
+              data-view-component="true"
+              className="Label flex-shrink-0 ml-2 d-flex"
+              style={{ alignItems: "center", height: "20px" }}
+              id="status_badge_ided"
+            >
+              {status}
+            </span>
+          </a>
         </div>
+        <button
+          id="open_trello_btn"
+          type="button"
+          className="btn m-2"
+          data-disable-with=""
+          style={{
+            fontSize: "10px",
+          }}
+        >
+          Open
+        </button>
+        <button
+          id="in_progress_trello_btn"
+          type="button"
+          className="btn m-2"
+          data-disable-with=""
+          style={{
+            fontSize: "10px",
+          }}
+        >
+          In progress
+        </button>
+        <button
+          id="closed_trello_btn"
+          type="button"
+          className="btn m-2"
+          data-disable-with=""
+          style={{
+            fontSize: "10px",
+          }}
+        >
+          Closed
+        </button>
       </div>
     </div>
   );
