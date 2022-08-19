@@ -43,7 +43,7 @@ chrome.storage.sync.get("trello", (result) => {
   isLogIn = result.trello.api_key != null && result.trello.api_token != null;
 });
 
-setTimeout(All, 50);
+setTimeout(All, 1);
 
 async function All() {
   if (location.includes("/pull/")) {
@@ -86,6 +86,7 @@ function setTrelloItemCell(link: string, list: Element) {
   appendElement(BorderGridCell(link), list);
 
   if (location.endsWith("/trello")) {
+    document.title = `Trello · ${repository_name}`;
     let footer = document.getElementsByTagName("footer")[0];
     replaceItem(Footer(), footer);
 
