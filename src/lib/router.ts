@@ -3,12 +3,14 @@ import {
   repository_trello,
   isLinked,
   isLogIn,
+  trello,
 } from "../lib/const";
 import {
   appendElement,
   appendNode,
   replaceItem,
-  generateHtmlSelector,
+  generateHTMLTrelloListSelector,
+  generateHTMLTrelloBoardSelector,
 } from "../lib/htmlHelper";
 import { linkTrelloBoard, linkTrelloAccount } from "../lib/linkers";
 import { Trello } from "../lib/trelloApi";
@@ -58,7 +60,7 @@ export class Router {
           );
 
           appendNode(
-            generateHtmlSelector(lists, cardStatus),
+            generateHTMLTrelloListSelector(lists, cardStatus),
             document.getElementById("trello_list_selector_container")!
           );
 
@@ -86,14 +88,59 @@ export class Router {
     main?.replaceChildren("");
     appendElement(TrelloAddingForm(!isLogIn), main);
 
-    document
-      .getElementById("link-trello-board-button")
-      ?.addEventListener("click", () => {
-        if (!isLogIn) {
-          linkTrelloAccount();
-        }
-        linkTrelloBoard();
-        window.location.href = window.location.href.replace("/trello", "");
+    if (isLogIn) {
+      Trello.getMe().then((dude) => {
+        console.log(dude);
+        Trello.getBoards(dude.id).then((boards) => {
+          console.log(boards);
+          setSelector(boards);
+        });
       });
+    } else {
+      setSelector();
+
+      let api_key = document.getElementById("api_key") as HTMLInputElement;
+      let api_token = document.getElementById("api_token") as HTMLInputElement;
+
+      api_key?.addEventListener("focusout", focusOutEvent);
+
+      api_token?.addEventListener("focusout", focusOutEvent);
+
+      function focusOutEvent(e: FocusEvent) {
+        let input = e.target;
+        if (api_key?.value && api_token?.value) {
+          if (!isLogIn) {
+            linkTrelloAccount();
+          }
+
+          Trello.getMe().then((dude) => {
+            console.log(dude);
+            Trello.getBoards(dude.id).then((boards) => {
+              console.log(boards);
+              document
+                .getElementById("board_id_container")
+                ?.parentNode?.replaceChild(
+                  generateHTMLTrelloBoardSelector(boards),
+                  document.getElementById("board_id_container")!
+                );
+            });
+          });
+        }
+      }
+    }
   }
+}
+
+function setSelector(boards: any = []) {
+  appendNode(
+    generateHTMLTrelloBoardSelector(boards),
+    document.getElementById("board_id_container")!
+  );
+
+  document
+    .getElementById("link-trello-board-button")
+    ?.addEventListener("click", () => {
+      linkTrelloBoard();
+      window.location.href = window.location.href.replace("/trello", "");
+    });
 }

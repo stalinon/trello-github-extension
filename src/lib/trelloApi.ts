@@ -39,4 +39,20 @@ export class Trello {
       return response.json();
     });
   }
+
+  static async getMe() {
+    return fetch(
+      `${base_url}/1/members/me?key=${trello.api_key}&token=${trello.api_token}`
+    ).then((response) => {
+      return response.json();
+    });
+  }
+
+  static async getBoards(memberId: string) {
+    return fetch(
+      `${base_url}/1/members/${memberId}/boards?key=${trello.api_key}&token=${trello.api_token}`
+    ).then((response) => {
+      return response.json();
+    });
+  }
 }

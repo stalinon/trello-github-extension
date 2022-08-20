@@ -26,7 +26,12 @@ export function replaceItem(element: JSX.Element, replaceItem: Element) {
   replaceItem?.parentNode?.replaceChild(div, replaceItem);
 }
 
-export function generateHtmlSelector(lists: any, status: any) {
+export function replaceNode(element: Node, replaceItem: Element) {
+  var div = element;
+  replaceItem?.parentNode?.replaceChild(div, replaceItem);
+}
+
+export function generateHTMLTrelloListSelector(lists: any, status: any) {
   var htmls = lists.map((v: { id: string; name: string }) => {
     return v.name === status
       ? `<option selected value=${v.id} key=${v.id}>${v.name}</option>`
@@ -36,6 +41,20 @@ export function generateHtmlSelector(lists: any, status: any) {
     `<select
       id="trello_list_selector"
       class="btn btn-sm"
+      style="outline:0px !important"
+    >${htmls.join("")}</select>`
+  );
+  return node;
+}
+
+export function generateHTMLTrelloBoardSelector(boards: any) {
+  var htmls = boards.map((v: { id: string; name: string }) => {
+    return `<option value=${v.id} key=${v.id}>${v.name}</option>`;
+  });
+  var node = getNodeFromString(
+    `<select 
+      class="btn m-2" 
+      id="board_id"
       style="outline:0px !important"
     >${htmls.join("")}</select>`
   );

@@ -6,9 +6,6 @@ export const key = `${repository_name}_trello`;
 export let repository_trello = {
   repository_name: "",
   board_id: "",
-  open_list_id: "",
-  in_progress_list_id: "",
-  closed_list_id: "",
 };
 
 export let trello = {
@@ -24,11 +21,7 @@ chrome.storage.sync.get(key, (obj) => {
       obj &&
       Object.keys(obj).length === 0 &&
       Object.getPrototypeOf(obj) === Object.prototype
-    ) &&
-    repository_trello.board_id != "" &&
-    repository_trello.open_list_id != null &&
-    repository_trello.in_progress_list_id != null &&
-    repository_trello.closed_list_id != null;
+    ) && repository_trello.board_id != "";
 });
 
 export let isLogIn = false;

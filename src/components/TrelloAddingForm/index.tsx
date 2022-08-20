@@ -4,7 +4,7 @@ export default function TrelloAddingForm(token: boolean = false) {
       <div className="clearfix">
         <div className="col-12 col-md-9">
           <div className="form-group">
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column" id="board_id_container">
               {token && (
                 <>
                   <input
@@ -23,13 +23,6 @@ export default function TrelloAddingForm(token: boolean = false) {
                   />
                 </>
               )}
-              <input
-                placeholder="Board Id"
-                className="form-control flex-auto m-2"
-                type="text"
-                name="board_id"
-                id="board_id"
-              />
             </div>
             <hr></hr>
             <button

@@ -1,4 +1,4 @@
-import { location, repository_name } from "../lib/const";
+import { repository_name } from "../lib/const";
 import { Router } from "../lib/router";
 
 setTimeout(All, 1);
