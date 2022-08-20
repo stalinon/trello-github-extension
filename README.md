@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+### Google Chrome extension for integrating Trello service into Github
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To install the extension, run `npm run build` at the root of the repository, then download the `build` folder like a Chrome extension.
 
-## Available Scripts
+The extension automatically attaches cards to pull requests on the connected Trello board (the task naming pattern is a string like "TASK-12 This text could be different for PR and card"). It allows you to move them to other lists from the pull request page using a select.
 
-In the project directory, you can run:
+In addition, the connection of the board occurs after the introduction of only `API_KEY` and `API_TOKEN` Trello, further linking is also implemented by the select.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Расширение Google Chrome для интеграции сервиса Trello в Github
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Чтобы установить расширение, запустите `npm run build` в корне репозитория, затем загрузите папку `build`, как расширение Chrome.
 
-### `npm test`
+Расширение автоматически прикрепляет карточки к пулл-реквестам на подключенной доске Trello (паттерн названия задачи представляет собой строку вроде «TASK-12 Этот текст может отличаться для PR и карточки»). Это позволяет вам перемещать их в другие списки со страницы пулл-реквеста с помощью селекта.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Кроме того, подключение доски происходит после введения только `API_KEY` и `API_TOKEN` Trello, дальнейшее подключение также осуществляется с помощью селекта.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![unlinked](./img/unlinked.png)
+![linked](./img/linked.png)
+![pull_request](./img/pull_request.png)
