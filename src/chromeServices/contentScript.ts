@@ -15,7 +15,7 @@ async function All() {
       break;
     default:
       if (
-        document.location.pathname.includes(repository_name) &&
+        document.location.pathname.includes(repository_name!) &&
         document.location.pathname.includes("/pull/")
       ) {
         Router.onPullRequestPage();

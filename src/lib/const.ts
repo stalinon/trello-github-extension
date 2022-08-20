@@ -42,12 +42,15 @@ var intervalId = window.setInterval(function () {
 }, 1);
 
 function getRepositoryName(address: string) {
-  var res = address.match(/https:\/\/github.com\/([^\/]+\/[^\/]+)/);
-  return res![1];
+  var res = address?.match(/https:\/\/github.com\/([^\/]+\/[^\/]+)/);
+
+  return res != null ? res[1] : null;
 }
 
-function Router(rep: string, callback: any) {
+function Router(rep: string | null, callback: any) {
   switch (document.location.pathname) {
+    case null:
+      break;
     case `/${rep}`:
     case `/${rep}/`:
       callback();
@@ -58,7 +61,7 @@ function Router(rep: string, callback: any) {
       break;
     default:
       if (
-        document.location.pathname.includes(rep) &&
+        document.location.pathname.includes(rep!) &&
         document.location.pathname.includes("/pull/")
       ) {
         callback.call(document.location);
