@@ -1,6 +1,6 @@
 {
   "name": "Trello to Github",
-  "description": "Trello to Github Integration Extension",
+  "description": "Google Chrome extension for integrating Trello service into Github. Расширение Google Chrome для интеграции сервиса Trello в Github.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
@@ -8,9 +8,6 @@
     "default_title": "Open"
   },
   "permissions": ["activeTab", "storage"],
-  "background": {
-    "service_worker": "./static/js/background.js"
-  },
   "content_scripts": [
     {
       "matches": ["http://github.com/*", "https://github.com/*"],
@@ -18,8 +15,8 @@
     }
   ],
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "16": "trello.png",
+    "48": "trello.png",
+    "128": "trello.png"
   }
 }

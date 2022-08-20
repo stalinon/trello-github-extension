@@ -10,7 +10,6 @@ module.exports = {
             paths.appIndexJs,
           ].filter(Boolean),
           content: "./src/chromeServices/contentScript.ts",
-          background: "./src/chromeServices/backgroundScript.ts",
         },
         output: {
           ...webpackConfig.output,

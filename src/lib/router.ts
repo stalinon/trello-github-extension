@@ -68,7 +68,6 @@ export class Router {
             .getElementById("trello_list_selector")
             ?.addEventListener("change", (e) => {
               let select = e.target as HTMLSelectElement;
-              console.log(select.options[select.selectedIndex].value);
               Trello.moveCard(
                 card.id,
                 select.options[select.selectedIndex].value
@@ -90,9 +89,7 @@ export class Router {
 
     if (isLogIn) {
       Trello.getMe().then((dude) => {
-        console.log(dude);
         Trello.getBoards(dude.id).then((boards) => {
-          console.log(boards);
           setSelector(boards);
         });
       });
@@ -114,9 +111,7 @@ export class Router {
           }
 
           Trello.getMe().then((dude) => {
-            console.log(dude);
             Trello.getBoards(dude.id).then((boards) => {
-              console.log(boards);
               document
                 .getElementById("board_id_container")
                 ?.parentNode?.replaceChild(
