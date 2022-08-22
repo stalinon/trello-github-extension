@@ -1,4 +1,4 @@
-export default function TrelloAddingForm(token: boolean = false) {
+export default function TrelloAddingForm(token: boolean = true) {
   return (
     <div className="clearfix container-xl px-3 px-md-4 px-lg-5 mt-4">
       <div className="clearfix">

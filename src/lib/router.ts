@@ -85,7 +85,7 @@ export class Router {
 
     let main = document.getElementsByTagName("main")[0];
     main?.replaceChildren("");
-    appendElement(TrelloAddingForm(!isLogIn), main);
+    appendElement(TrelloAddingForm(), main);
 
     if (isLogIn) {
       Trello.getMe().then((dude) => {
@@ -104,9 +104,8 @@ export class Router {
       api_token?.addEventListener("focusout", focusOutEvent);
 
       function focusOutEvent(e: FocusEvent) {
-        let input = e.target;
         if (api_key?.value && api_token?.value) {
-          if (!isLogIn) {
+          if (api_key?.value != "" && api_token?.value != "") {
             linkTrelloAccount();
           }
 
